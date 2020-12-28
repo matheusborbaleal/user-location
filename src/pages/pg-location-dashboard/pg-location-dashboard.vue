@@ -1,0 +1,16 @@
+<template lang="pug">
+.location-page--wrapper
+  location-dashboard
+</template>
+
+<script lang="ts" src="./pg-location-dashboard.ts">
+</script>
+
+<style lang="stylus">
+.location-page--wrapper{
+  width: 100%;
+  height : 100vh;
+  display: grid;
+  align-items: center;
+}
+</style>
