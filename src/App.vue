@@ -3,13 +3,10 @@
     <main>
       <router-view />
     </main>
-    <app-notification /> 
-    <transitory-notification></transitory-notification> 
+    <app-notification />
+    <transitory-notification></transitory-notification>
   </div>
 </template>
-
-<style lang="scss" src="./assets/vendor/bootstrap/scss/bootstrap.scss">
-</style>
 
 <script lang="ts" src="./App.ts"/>
 

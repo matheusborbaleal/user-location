@@ -29,7 +29,6 @@ export default class Login extends Vue {
   };
 
   signUpUser: ISimpleUser = {
-    name: '',
     email: '',
     password: '',
   };
@@ -41,7 +40,6 @@ export default class Login extends Vue {
     };
 
     this.signUpUser = {
-      name: '',
       email: '',
       password: '',
     };
@@ -64,17 +62,21 @@ export default class Login extends Vue {
         this.$router.push({ name: 'LocationDashboard' });
       })
       .catch((err) => {
-        this.clearInputs();
         const error = this.signUpValidator(err);
         this.$store.dispatch(emmitNewNotification({
           title: 'Erro',
           message: error ? error : err,
           type: ITypeNotification.DANGER,
         }));
+        this.clearInputs();
       });
   }
 
   signUpValidator(error: string) {
+
+    if (this.passwordToConfirm !== this.signUpUser.password) {
+      return 'As senhas não conferem!';
+    }
 
     switch (error) {
       case 'Missing email or username':

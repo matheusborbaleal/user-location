@@ -1,15 +1,15 @@
 <template lang="pug">
 .location-dashboard--wrapper
+  user-profile-sidebar
+  location-info-sidebar
   .location-sidebar
-    .list--header
-      .logged-user
-        img.user-photo(:src="currentUser.avatar", alt="User profile")
-        .user-info
-          span.user-name {{ currentUser.first_name }} {{ currentUser.last_name }}
-          span.user-email {{ currentUser.email }}
+    .header
+      user-profile
       .project--logo
         img.logo(src="../../assets/img/white-logo.svg", alt="Logo branca")
-    .list--body
+    .local--types-list
+      b-form-select(v-model="selectedLocalType", :options="localTypes" @change="getCurrentLocation")
+    .local--list
       location-list
   .location-map
     #map
@@ -27,47 +27,16 @@
   flex-wrap: wrap;
 }
 
-.location-sidebar {
-  background: $c-red-default;
-  width: 35%;
-  height: 100vh;
-  padding-right: 0.3rem;
-}
-
-.list--header {
+.header {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
 }
 
-.logged-user {
-  display: flex;
-  align-items: center;
-  color: $c-white;
-  padding: 3rem 0rem 0rem 1.8rem;
-
-  &:hover {
-    cursor: pointer;
-  }
-}
-
-.user-info {
-  display: flex;
-  flex-direction: column;
-  margin-left: 1rem;
-}
-
-.user-name {
-  font-weight: $f-semibold;
-}
-
-.user-email {
-  font-size: $f-size-text;
-}
-
-.user-photo {
-  width: 5rem;
-  border-radius: 100%;
+.local--types-list {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  padding-left: 1.8rem;
 }
 
 .logo {
@@ -75,9 +44,8 @@
   width: 60px;
 }
 
-.list--body {
-  margin-top: 3rem;
-  height: 70vh;
+.local--list {
+  height: 60vh;
   overflow: auto;
 }
 
@@ -91,6 +59,9 @@
 }
 
 .location-sidebar {
+  background: $c-red-default;
+  height: 100vh;
+  padding-right: 2rem;
   flex: 40%;
 }
 

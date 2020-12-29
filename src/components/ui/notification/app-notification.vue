@@ -4,7 +4,6 @@
 
 <style lang="stylus">
 .vue-notification {
-  word-break: break-all;
 
   &.default {
     background: $c-brand-primary;
