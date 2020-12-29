@@ -110,6 +110,7 @@
       "check-preblock",
       "check-separator"
     ],
-    "trailing-comma": false
+    "trailing-comma": false,
+    "interface-name" : [true, "always-prefix"]
   }
 }

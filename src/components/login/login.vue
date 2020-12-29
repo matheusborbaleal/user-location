@@ -2,7 +2,7 @@
 .container-login
   .container-signin
     .container-header
-      img(src="../../assets/img/red-logo.svg", alt="Logo vermelha")
+      img(src="../../assets/img/white-logo.svg", alt="Logo vermelha")
     .container-body
       .form-signin(v-if="!isCreating")
         .form-signin-body
@@ -54,6 +54,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: $c-red-default;
 }
 
 .container-header img {
