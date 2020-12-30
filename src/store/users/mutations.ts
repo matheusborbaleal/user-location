@@ -9,6 +9,7 @@ export const mutations = {
     },
     [setLoggedUser](state: IUserState, { loggedUser }: { loggedUser: IUser }) {
         state.loggedUser = loggedUser;
+        return loggedUser;
     }
 };
 

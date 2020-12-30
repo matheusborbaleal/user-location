@@ -140,6 +140,20 @@ label, fieldset {
   transition: all 0.5;
 }
 
+.flip-list-enter-active, .flip-list-leave-active {
+  transition: all 0.3s;
+}
+
+.flip-list-enter {
+  opacity: 0;
+  transform: translateY(80px);
+}
+
+.flip-list-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
 // Default button styling
 .btn-flat {
   background-color: $c-white;

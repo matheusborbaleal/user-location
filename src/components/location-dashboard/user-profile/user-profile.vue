@@ -9,12 +9,11 @@
 <script lang="ts" src="./user-profile.ts">
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
 .logged-user {
   display: flex;
   align-items: center;
   color: $c-white;
-  padding: 3rem 0rem 0rem 1.8rem;
   outline: none;
 
   &:hover {

@@ -3,7 +3,8 @@ import getters from './getters';
 import { mutations } from './mutations';
 
 const state = {
-  nearbyLocations: []
+  nearbyLocations: [],
+  selectedPlace: {},
 };
 
 export default {

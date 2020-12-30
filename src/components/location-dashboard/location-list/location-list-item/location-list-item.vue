@@ -1,25 +1,33 @@
 <template lang="pug">
-b-list-group-item.content(v-b-toggle="'location-info-sidebar'")
+b-list-group-item.content(v-b-toggle="'location-info-sidebar'" @click="choosePlace(location)")
   .item
-    .item-description
-      .item-name
-        span {{ location.name }}
-      .item-adress
-        b-icon(icon="geo-alt-fill")
-        span.text {{ location.vicinity }}
-      .item-rating
-        b-icon(icon="star-half")
-        span.text {{ location.rating }}
-      .item-avaliations
-        b-icon(icon="people-fill")
-        span.text {{ location.user_ratings_total }} avaliações
+    .item-wrapper
+      .item-description
+        .item-name
+          span {{ location.name }}
+        .item-adress
+          b-icon(icon="geo-alt-fill")
+          span.text {{ location.vicinity }}
+        .item-rating
+          b-icon(icon="star-half")
+          span.text {{ location.rating }}
+        .item-avaliations
+          b-icon(icon="people-fill")
+          span.text {{ location.user_ratings_total }} avaliações
+      .favorite-button
+        b-icon(icon="star" @click="favoritePlace(location)")
+        //- b-icon(icon="star-fill")
     .separator
 </template>
 
 <script lang="ts" src="./location-list-item.ts">
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
+
+.list-group-item {
+  padding: 0rem;
+}
 .content {
   display: flex;
   border: none;
@@ -36,13 +44,22 @@ b-list-group-item.content(v-b-toggle="'location-info-sidebar'")
 .item {
   display: flex;
   flex-direction: column;
+  width: 100%
+}
+
+.item-wrapper {
+  display: flex;
+  justify-content: space-between;
   width: 100%;
+  align-items: center;
+  padding-right: 1.2rem;
 }
 
 .item-description {
   display: flex;
   flex-direction: column;
-  padding-left: 1rem;
+  width: 100%;
+  padding: 1rem 0rem 1rem 1.8rem;
 }
 
 .item-adress, .item-rating, .item-avaliations {
@@ -62,7 +79,14 @@ b-list-group-item.content(v-b-toggle="'location-info-sidebar'")
 }
 
 .separator {
+  align-self: center;
   border-top: 1px solid #dee2e6 !important;
-  margin-top: 1.4rem;
+  width: 96%;
 }
+
+.favorite-button {
+  font-size: 1.3rem;
+}
+
+
 </style>
