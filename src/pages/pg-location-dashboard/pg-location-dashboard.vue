@@ -6,7 +6,7 @@
 <script lang="ts" src="./pg-location-dashboard.ts">
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
 .location-page--wrapper{
   width: 100%;
   height : 100vh;

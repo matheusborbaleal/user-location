@@ -6,4 +6,4 @@
 <script lang="ts" src="./pg-login.ts">
 </script>
 
-<style lang="stylus"></style>
+<style lang="stylus" scoped></style>

@@ -6,4 +6,5 @@ export interface ILocation {
 
 export interface ILocationState {
     nearbyLocations: ILocation[];
+    selectedPlace: ILocation;
 }

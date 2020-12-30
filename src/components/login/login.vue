@@ -31,7 +31,6 @@
             label Confirmar senha
             b-input(size="sm", type="password", v-model="passwordToConfirm")
           b-button.btn.btn-primary.btn-block(@click="registerUser") Criar conta
-  //- .container-image
 </template>
 
 <style lang="stylus" scoped>
@@ -108,6 +107,7 @@
   font-size: $f-size-text;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .sign-up--button {

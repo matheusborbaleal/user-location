@@ -28,7 +28,6 @@ export default class LocationDashboard extends Vue {
     localTypes: {}[] = [
         { value: null, text: 'Selecione um tipo de local', disabled: true },
         { value: 'gym', text: 'Academias' },
-        { value: 'airport', text: 'Aeroportos' },
         { value: 'bank', text: 'Bancos' },
         { value: 'bar', text: 'Bares' },
         { value: 'movie_theater', text: 'Cinemas' },
@@ -78,6 +77,10 @@ export default class LocationDashboard extends Vue {
                 infowindow.open(location, marker);
             });
         });
+    }
+
+    logout() {
+        this.$router.push({ name: 'Login' })
     }
 
     mounted() {

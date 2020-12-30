@@ -12,6 +12,7 @@
     "core-js": "^3.6.5",
     "event-emitter-lite": "^1.6.3",
     "file-loader": "^6.2.0",
+    "moment": "^2.29.1",
     "nodemon": "^2.0.6",
     "pug": "^3.0.0",
     "push.js": "^1.0.12",
