@@ -9,7 +9,7 @@
   b-button#submit.btn.btn-primary.btn-block(@click="signIn") Entrar
   .sign-up--wrapper
     span Não tem uma conta?
-    b-button.sign-up--button(variant="flat btn-sm")(@click="signUpHandler") Crie uma agora.
+    b-button.sign-up--button(variant="flat btn-sm" @click="signUpHandler") Crie uma agora.
 </template>
 <script lang="ts" src="./user-sign-in.ts">
 </script>

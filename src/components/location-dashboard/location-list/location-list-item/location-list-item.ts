@@ -16,9 +16,11 @@ import { loggedUser } from '../../../../store/users/types';
 })
 export default class LocationListItem extends Vue {
 
+    // eslint-disable-next-line
     public loggedUser: any;
 
     @Prop()
+    // eslint-disable-next-line
     location: any;
 
     isLocationFavorited = false;
@@ -45,6 +47,7 @@ export default class LocationListItem extends Vue {
             user: this.currentUser.id,
         };
 
+        // eslint-disable-next-line
         const index = favorites.findIndex((item: any) => {
             if (item.user === place.user) {
                 if (item.name === place.name) {
@@ -67,6 +70,7 @@ export default class LocationListItem extends Vue {
     checkIfIsFavorited() {
         const favorites = JSON.parse(localStorage.getItem('favorite-places') || '[]');
 
+        // eslint-disable-next-line
         const index = favorites.findIndex((item: any) => {
             if (item.user === this.currentUser.id) {
                 if (item.name === this.location.name) {

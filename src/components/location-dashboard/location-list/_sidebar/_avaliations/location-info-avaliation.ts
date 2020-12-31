@@ -7,5 +7,6 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 export default class LocationInfoAvaliation extends Vue {
 
     @Prop()
+    // eslint-disable-next-line
     avaliation: any;
 }

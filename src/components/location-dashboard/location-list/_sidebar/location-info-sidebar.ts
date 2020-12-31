@@ -1,9 +1,8 @@
-import { ILocation } from '@/interfaces/ilocation';
-import { Vue, Component } from 'vue-property-decorator';
+import moment from 'moment';
+import { Component, Vue } from 'vue-property-decorator';
 import { mapGetters } from 'vuex';
 import { selectedPlace } from '../../../../store/location/types';
 import { loggedUser } from '../../../../store/users/types';
-import moment from 'moment';
 
 @Component({
     name: 'location-info-sidebar',
@@ -19,13 +18,14 @@ import moment from 'moment';
 })
 
 export default class LocationInfoSidebar extends Vue {
-
+    // eslint-disable-next-line
     public selectedPlace: any;
+    // eslint-disable-next-line
     public loggedUser: any;
 
     placeRate = null;
     placeAvaliation = '';
-
+    // eslint-disable-next-line
     avaliations: any = JSON.parse(localStorage.getItem('place-avaliations') || '[]');
 
     publishAvaliation() {
@@ -66,6 +66,7 @@ export default class LocationInfoSidebar extends Vue {
 
     get avaliationsByPlace() {
         if (this.avaliations.length) {
+            // eslint-disable-next-line
             const byPlace = this.avaliations.reduce((arr: any, obj: any) => {
                 const key = obj.name;
                 if (!arr[key]) {

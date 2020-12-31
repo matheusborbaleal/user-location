@@ -18,6 +18,7 @@ import { users } from '../../../store/users/types';
 
 export default class UserSignUp extends Vue {
 
+    // eslint-disable-next-line
     public users: any;
 
     passwordToConfirm = '';

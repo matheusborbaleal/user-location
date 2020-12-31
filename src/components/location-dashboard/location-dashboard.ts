@@ -22,6 +22,7 @@ import { logoutUser } from '@/store/users/mutations';
 })
 export default class LocationDashboard extends Vue {
 
+    // eslint-disable-next-line
     public nearbyLocations: any;
 
     selectedLocalType: string | null = 'restaurant';
@@ -58,6 +59,7 @@ export default class LocationDashboard extends Vue {
     }
 
     addLocationsToGoogleMaps() {
+        // eslint-disable-next-line
         const mapElement: any = document.getElementById('map');
         const location = new google.maps.Map(mapElement, {
             zoom: 14,
@@ -66,6 +68,7 @@ export default class LocationDashboard extends Vue {
         });
 
         const infowindow = new google.maps.InfoWindow();
+        // eslint-disable-next-line
         this.nearbyLocations.forEach((place: any, index: any) => {
             const lat = place.geometry.location.lat;
             const lng = place.geometry.location.lng;

@@ -17,13 +17,16 @@ interface ConfigNotification {
 
 export default class AppNotification extends Vue {
   activeWindow = true;
+  // eslint-disable-next-line
   unsubBlur = {} as any;
+  // eslint-disable-next-line
   unsubFocus = {} as any;
 
   get notificationSupport(): boolean {
     return (('Notification' in window));
   }
   get notificationPermission(): boolean {
+    // eslint-disable-next-line
     return (this.notificationSupport && ((Notification as any).permission !== 'denied' || (Notification as any).permission === 'default'));
   }
   get useNotification(): boolean {
@@ -115,6 +118,7 @@ export default class AppNotification extends Vue {
       const config: NotificationInterface = Object.assign({}, selectedType, notif);
 
       if (this.useNotification) {
+        // eslint-disable-next-line
         (Push as any).create(config.title, {
           duration: config.duration,
           body: config.message,
@@ -128,6 +132,7 @@ export default class AppNotification extends Vue {
           text: config.message,
           type: config.type,
           duration: config.duration,
+          // eslint-disable-next-line
         } as any);
       }
     });

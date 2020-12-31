@@ -7,5 +7,6 @@ import { Vue, Component, Prop } from 'vue-property-decorator';
 export default class UserProfileFavorite extends Vue {
 
     @Prop()
+    // eslint-disable-next-line
     favorite: any;
 }

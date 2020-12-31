@@ -8,9 +8,11 @@ import { NotificationInterface } from '../../../interfaces/inotification';
 
 export default Vue.extend({
   data() {
+    // eslint-disable-next-line
     return { unsub: {} as any };
   },
   created() {
+    // eslint-disable-next-line
     this.unsub = (this.$store as any).subscribeAction((action: any) => {
       let notificationBody = {} as NotificationInterface;
       if (['newNotification'].indexOf(action.type) > -1) {

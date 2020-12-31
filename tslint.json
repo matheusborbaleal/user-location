@@ -114,10 +114,6 @@
       "check-preblock",
       "check-separator"
     ],
-    "trailing-comma": false,
-    "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": [
-      "error"
-    ]
+    "trailing-comma": false
   }
 }
