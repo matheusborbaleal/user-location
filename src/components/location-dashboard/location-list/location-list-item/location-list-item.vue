@@ -36,7 +36,7 @@ b-list-group-item.content
   border: none;
   background: none;
   color: white;
-  font-size: 1rem;
+  font-size: $f-size-info;
 }
 
 .item {
@@ -88,7 +88,7 @@ b-list-group-item.content
 
 .text {
   margin-left: 0.3rem;
-  font-size: 0.9rem;
+  font-size: $f-size-text;
 }
 
 .separator {

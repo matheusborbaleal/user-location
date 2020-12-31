@@ -5,13 +5,13 @@ export interface ILocation {
 }
 
 export interface IPlace {
-    name: string,
-    icon: string,
+    name: string;
+    icon: string;
     opening_hours: {
         open_now: boolean;
-    },
-    vicinity: string,
-    user_ratings_total: number
+    };
+    vicinity: string;
+    user_ratings_total: number;
 }
 
 export interface ILocationState {

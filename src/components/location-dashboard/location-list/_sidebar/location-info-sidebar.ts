@@ -37,11 +37,11 @@ export default class LocationInfoSidebar extends Vue {
             message: this.placeAvaliation,
             rate: this.placeRate,
             time: moment().format('LLL')
-        }
+        };
 
         this.avaliations.unshift(place);
 
-        localStorage.setItem('place-avaliations', JSON.stringify(this.avaliations))
+        localStorage.setItem('place-avaliations', JSON.stringify(this.avaliations));
 
         this.clearInputs();
     }
@@ -67,7 +67,7 @@ export default class LocationInfoSidebar extends Vue {
     get avaliationsByPlace() {
         if (this.avaliations.length) {
             const byPlace = this.avaliations.reduce((arr: any, obj: any) => {
-                const key = obj.name
+                const key = obj.name;
                 if (!arr[key]) {
                     arr[key] = [];
                 }

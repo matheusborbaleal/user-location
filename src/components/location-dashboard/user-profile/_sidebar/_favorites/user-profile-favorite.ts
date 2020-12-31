@@ -1,4 +1,4 @@
-import { Vue, Component, Prop } from 'vue-property-decorator'
+import { Vue, Component, Prop } from 'vue-property-decorator';
 
 @Component({
     name: 'user-profile-favorite',
@@ -7,5 +7,5 @@ import { Vue, Component, Prop } from 'vue-property-decorator'
 export default class UserProfileFavorite extends Vue {
 
     @Prop()
-    favorite: any
+    favorite: any;
 }

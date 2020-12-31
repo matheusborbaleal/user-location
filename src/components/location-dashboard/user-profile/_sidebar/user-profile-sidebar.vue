@@ -23,8 +23,8 @@ b-sidebar#user-profile-sidebar(shadow)
       label.favorites--labels Favoritos
       .favorites-list
         user-profile-favorite(
-          v-for="(favorite, index) in favorites",
-          :key="index"
+          v-for="(favorite, index) in favoritesByUser[currentUser.id]",
+          :key="index",
           :index="index",
           :favorite="favorite"
         )
@@ -90,13 +90,13 @@ b-sidebar#user-profile-sidebar(shadow)
 }
 
 .favorites--labels {
-  font-size: 1rem;
+  font-size: $f-size-info;
   font-weight: $f-semibold;
 }
 
 .favorites-list {
   overflow: auto;
-  height: 24vh;
+  height: 23vh;
 }
 
 .save--button {

@@ -2,7 +2,9 @@
 .logged-user(v-b-toggle="'user-profile-sidebar'")
   img.user-photo(:src="currentUser.avatar", alt="User profile")
   .user-info
-    span.user-name {{ currentUser.first_name }} {{ currentUser.last_name }}
+    span.user-name(
+      :title="`${currentUser.first_name} ${currentUser.last_name}`"
+    ) {{ currentUser.first_name }} {{ currentUser.last_name }}
     span.user-email {{ currentUser.email }}
 </template>
 
@@ -29,6 +31,10 @@
 
 .user-name {
   font-weight: $f-semibold;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 17rem;
 }
 
 .user-email {

@@ -27,7 +27,6 @@ export default class LocationListItem extends Vue {
         this.$store.commit(selectPlace(location));
     }
 
-
     get currentUser() {
         if (Object.keys(this.loggedUser).length) {
             return this.loggedUser;
@@ -44,7 +43,7 @@ export default class LocationListItem extends Vue {
         const place = {
             name: locationName,
             user: this.currentUser.id,
-        }
+        };
 
         const index = favorites.findIndex((item: any) => {
             if (item.user === place.user) {
@@ -52,7 +51,7 @@ export default class LocationListItem extends Vue {
                     return true;
                 }
             }
-        })
+        });
 
         if (index > -1) {
             favorites.splice(index, 1);
@@ -60,7 +59,7 @@ export default class LocationListItem extends Vue {
             favorites.push(place);
         }
 
-        localStorage.setItem('favorite-places', JSON.stringify(favorites))
+        localStorage.setItem('favorite-places', JSON.stringify(favorites));
 
         this.isLocationFavorited = this.checkIfIsFavorited();
     }
@@ -74,7 +73,7 @@ export default class LocationListItem extends Vue {
                     return true;
                 }
             }
-        })
+        });
 
         if (index > -1) {
             return true;

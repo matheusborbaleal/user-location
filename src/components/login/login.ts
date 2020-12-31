@@ -1,147 +1,32 @@
-import { ISimpleUser, IUser } from '@/interfaces/iuser';
-import { createUser, fetchUsers, login } from '../../store/users/actions';
-import { Vue, Component } from 'vue-property-decorator';
-import { mapGetters } from 'vuex';
-import { authUser, mountLoggedUser } from '@/store/users/mutations';
-import { users } from '../../store/users/types';
-import { emmitNewNotification } from '@/store/notifications/actions';
-import { ITypeNotification } from '@/interfaces/inotification';
+import { logoutUser } from '@/store/users/mutations';
+import { Component, Vue } from 'vue-property-decorator';
+import { fetchUsers } from '../../store/users/actions';
 
 @Component({
   name: 'login',
-  computed: {
-    ...mapGetters({
-      users
-    })
-  },
+  components: {
+    UserSignIn: () => import('./_sign-in/user-sign-in.vue'),
+    UserSignUp: () => import('./_sign-up/user-sign-up.vue'),
+  }
 })
 export default class Login extends Vue {
 
-  public users: any;
-
   isCreating = false;
 
-  passwordToConfirm = '';
-
-  signInUser: ISimpleUser = {
-    email: '',
-    password: ''
-  };
-
-  signUpUser: ISimpleUser = {
-    email: '',
-    password: '',
-  };
-
-  clearInputs() {
-    this.signInUser = {
-      email: '',
-      password: ''
-    };
-
-    this.signUpUser = {
-      email: '',
-      password: '',
-    };
-    this.passwordToConfirm = '';
-  }
-
-  signUpHandler() {
+  registerFormHandler() {
     this.isCreating = !this.isCreating;
-    this.clearInputs();
   }
 
-  registerUser() {
-    this.$store.dispatch(createUser(this.signUpUser))
-      .then(() => {
-        this.$store.dispatch(emmitNewNotification({
-          title: 'Sucesso',
-          message: 'Usuário registrado com sucesso!',
-          type: ITypeNotification.SUCCESS,
-        }));
-        this.$router.push({ name: 'LocationDashboard' });
-      })
-      .catch((err) => {
-        const error = this.signUpValidator(err);
-        this.checkPassword();
-        this.$store.dispatch(emmitNewNotification({
-          title: 'Erro',
-          message: error ? error : err,
-          type: ITypeNotification.DANGER,
-        }));
-        this.clearInputs();
-      });
-  }
-
-  signUpValidator(error: string) {
-
-    switch (error) {
-      case 'Missing email or username':
-        return 'É necessário preencher o email do usuário!';
-      case 'Missing password':
-        return 'É necessário preencher o campo de senha!';
-      case 'Note: Only defined users succeed registration':
-        return 'Apenas usuários pré-definidos podem ser registrados! Ex: rachel.howell@reqres.in';
-      default:
-        return '';
-    }
-  }
-
-  checkPassword() {
-
-    if (this.passwordToConfirm !== this.signUpUser.password) {
-      this.$store.dispatch(emmitNewNotification({
-        title: 'Erro',
-        message: 'As senhas não conferem',
-        type: ITypeNotification.DANGER,
-      }));
-    }
-  }
-
-  signIn() {
-    this.$store.dispatch(login(this.signInUser))
-      .then((res) => {
-        this.$store.commit(authUser(res.token))
-        this.setLoggedUser();
-        this.$router.push({ name: 'LocationDashboard' });
-      })
-      .catch((err) => {
-        this.clearInputs();
-        const validatedError = this.signInValidator(err);
-        this.$store.dispatch(emmitNewNotification({
-          title: 'Erro',
-          message: validatedError ? validatedError : err,
-          type: ITypeNotification.DANGER,
-        }));
-      });
-  }
-
-  signInValidator(error: string) {
-
-    switch (error) {
-      case 'Missing email or username':
-        return 'É necessário preencher o email do usuário!';
-      case 'Missing password':
-        return 'É necessário preencher o campo de senha!';
-      case 'user not found':
-        return 'Usuário não encontrado!';
-      default:
-        return '';
-    }
-
-  }
-
-  setLoggedUser() {
-    this.users.find((user: IUser) => {
-      if (user.email === this.signInUser.email.trim()) {
-        this.$store.commit(mountLoggedUser(user));
-        localStorage.setItem('user', JSON.stringify(user));
-      }
-    });
+  get isAuthenticated() {
+    return localStorage.getItem('user-token') ? true : false;
   }
 
   mounted() {
     this.$store.dispatch(fetchUsers());
+
+    if (!this.isAuthenticated) {
+      this.$store.commit(logoutUser());
+    }
   }
 
 }

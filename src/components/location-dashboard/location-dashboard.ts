@@ -86,13 +86,13 @@ export default class LocationDashboard extends Vue {
                     </div>`);
                     infowindow.open(location, marker);
                 });
-            }, index * 100)
+            }, index * 100);
         });
     }
 
     logout() {
         this.$store.commit(logoutUser());
-        this.$router.push({ name: 'Login' })
+        this.$router.push({ name: 'Login' });
     }
 
     mounted() {

@@ -13,8 +13,7 @@
 
 <style lang="stylus">
 @import url('./assets/fonts/open-sans/open-sans.styl');
-@import url('./assets/fonts/solomon/stylesheet.styl');
-
+  
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
