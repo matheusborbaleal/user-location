@@ -1,8 +1,11 @@
 <template lang="pug">
-b-list-group-item.content(v-b-toggle="'location-info-sidebar'" @click="choosePlace(location)")
+b-list-group-item.content
   .item
     .item-wrapper
-      .item-description
+      .item-description(
+        v-b-toggle="'location-info-sidebar'",
+        @click="choosePlace(location)"
+      )
         .item-name
           span {{ location.name }}
         .item-adress
@@ -14,9 +17,9 @@ b-list-group-item.content(v-b-toggle="'location-info-sidebar'" @click="choosePla
         .item-avaliations
           b-icon(icon="people-fill")
           span.text {{ location.user_ratings_total }} avaliações
-      .favorite-button
-        b-icon(icon="star" @click="favoritePlace(location)")
-        //- b-icon(icon="star-fill")
+      .favorite-button(@click="favoritePlaceMethod(location.name)")
+        b-icon(v-if="!isLocationFavorited", icon="star")
+        b-icon(v-else, icon="star-fill")
     .separator
 </template>
 
@@ -24,27 +27,22 @@ b-list-group-item.content(v-b-toggle="'location-info-sidebar'" @click="choosePla
 </script>
 
 <style lang="stylus" scoped>
-
 .list-group-item {
   padding: 0rem;
 }
+
 .content {
   display: flex;
   border: none;
   background: none;
   color: white;
   font-size: 1rem;
-  outline: none;
-
-  &:hover {
-    cursor: pointer;
-  }
 }
 
 .item {
   display: flex;
   flex-direction: column;
-  width: 100%
+  width: 100%;
 }
 
 .item-wrapper {
@@ -60,6 +58,15 @@ b-list-group-item.content(v-b-toggle="'location-info-sidebar'" @click="choosePla
   flex-direction: column;
   width: 100%;
   padding: 1rem 0rem 1rem 1.8rem;
+  outline: none;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .item-adress, .item-rating, .item-avaliations {
@@ -71,6 +78,12 @@ b-list-group-item.content(v-b-toggle="'location-info-sidebar'" @click="choosePla
 .item-name {
   font-weight: $f-semibold;
   margin-bottom: 0.5rem;
+}
+
+.item, .item-wrapper {
+  &:hover {
+    cursor: default;
+  }
 }
 
 .text {
@@ -86,7 +99,9 @@ b-list-group-item.content(v-b-toggle="'location-info-sidebar'" @click="choosePla
 
 .favorite-button {
   font-size: 1.3rem;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
-
-
 </style>

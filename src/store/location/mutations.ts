@@ -1,7 +1,7 @@
-import { ILocation, ILocationState } from '@/interfaces/ilocation';
+import { ILocation, ILocationState, IPlace } from '@/interfaces/ilocation';
 import { setNearbyLocations, setSelectedPlace } from './types';
 
-export const selectPlace = (location: ILocation) => ({ type: setSelectedPlace, location });
+export const selectPlace = (location: IPlace) => ({ type: setSelectedPlace, location });
 
 export const mutations = {
 
@@ -9,7 +9,7 @@ export const mutations = {
         state.nearbyLocations = locations;
     },
 
-    [setSelectedPlace](state: ILocationState, { location }: { location: ILocation }) {
+    [setSelectedPlace](state: ILocationState, { location }: { location: IPlace }) {
         state.selectedPlace = location;
     }
 };

@@ -1,5 +1,5 @@
 <template lang="pug">
-.location-page--wrapper
+.location-page--wrapper(v-if="isAuthenticated")
   location-dashboard
 </template>
 

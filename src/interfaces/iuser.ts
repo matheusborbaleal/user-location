@@ -14,4 +14,5 @@ export interface IUser {
 export interface IUserState {
     loggedUser: IUser;
     users: IUser[];
+    userToken: string;
 }

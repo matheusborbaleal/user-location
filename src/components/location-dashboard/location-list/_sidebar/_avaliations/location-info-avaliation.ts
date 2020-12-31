@@ -8,5 +8,4 @@ export default class LocationInfoAvaliation extends Vue {
 
     @Prop()
     avaliation: any;
-
 }

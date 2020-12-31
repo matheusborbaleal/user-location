@@ -26,7 +26,7 @@ export default class LocationInfoSidebar extends Vue {
     placeRate = null;
     placeAvaliation = '';
 
-    avaliations = JSON.parse(localStorage.getItem('place-avaliations') as string) ? JSON.parse(localStorage.getItem('place-avaliations') as string) : [];
+    avaliations: any = JSON.parse(localStorage.getItem('place-avaliations') || '[]');
 
     publishAvaliation() {
 
@@ -41,12 +41,12 @@ export default class LocationInfoSidebar extends Vue {
 
         this.avaliations.unshift(place);
 
-        localStorage.setItem('place-avaliations', this.avaliations)
+        localStorage.setItem('place-avaliations', JSON.stringify(this.avaliations))
 
         this.clearInputs();
     }
 
-    clearInputs(){
+    clearInputs() {
         this.placeAvaliation = '';
         this.placeRate = this.selectedPlace.rating;
     }
@@ -64,12 +64,24 @@ export default class LocationInfoSidebar extends Vue {
         }
     }
 
-    mounted() {
-        // console.log('this.avaliations', this.avaliations)
-        // if (!this.avaliations) {
-        //     localStorage.setItem('place-avaliations', '[]');
-        // }
+    get avaliationsByPlace() {
+        if (this.avaliations.length) {
+            const byPlace = this.avaliations.reduce((arr: any, obj: any) => {
+                const key = obj.name
+                if (!arr[key]) {
+                    arr[key] = [];
+                }
+                arr[key].push(obj);
+                return arr;
+            }, {});
 
+            return byPlace;
+        } else {
+            return [];
+        }
+    }
+
+    mounted() {
         this.$root.$on('bv::toggle::collapse', () => {
             this.placeRate = this.selectedPlace.rating;
         });
