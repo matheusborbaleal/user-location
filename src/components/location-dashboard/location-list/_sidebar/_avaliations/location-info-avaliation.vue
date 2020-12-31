@@ -44,15 +44,15 @@ li.comment-list-item
 }
 
 .time {
-  font-size: 0.7rem;
+  font-size: $f-size-description;;
   margin-right: 1rem;
 }
 
 .comment {
-  font-size: 0.9rem;
+  font-size: $f-size-text;
 }
 
 .avaliation {
-  font-size: 0.9rem;
+  font-size: $f-size-text;
 }
 </style>

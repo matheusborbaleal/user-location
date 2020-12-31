@@ -1,13 +1,13 @@
-import { INotification } from '../../interfaces/inotification';
+import { NotificationInterface } from '../../interfaces/inotification';
 import getters from './getters';
 import { mutations } from './mutations';
 import { actions } from './actions';
 
-export interface IStateNotification {
-  notifications: INotification[];
+export interface StateNotification {
+  notifications: NotificationInterface[];
 }
 
-const state: IStateNotification = {
+const state: StateNotification = {
   notifications: [],
 };
 

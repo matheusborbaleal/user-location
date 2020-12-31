@@ -16,7 +16,7 @@ export default class PgLocationDashboard extends Vue {
 
     mounted() {
         if (!this.isAuthenticated) {
-            this.$store.commit(logoutUser())
+            this.$store.commit(logoutUser());
             this.$router.push({ name: 'Login' });
         }
     }

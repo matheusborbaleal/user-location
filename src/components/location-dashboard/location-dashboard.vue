@@ -47,7 +47,7 @@
 }
 
 .logout-button {
-  font-size: 1.4rem;
+  font-size: $f-size-title;;
   margin-left: 1.5rem;
   color: $c-white;
 

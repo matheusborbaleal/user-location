@@ -10,6 +10,7 @@
 <style lang="stylus" scoped>
 .favorite {
   font-size: 0.9rem;
+  margin-bottom: 0.7rem;
 }
 
 .local-name {

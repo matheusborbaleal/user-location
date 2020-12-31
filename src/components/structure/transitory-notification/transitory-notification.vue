@@ -4,7 +4,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import { emmitNotification } from '../../ui/notification/emmit-notifications/notification';
-import { INotification } from '../../../interfaces/inotification';
+import { NotificationInterface } from '../../../interfaces/inotification';
 
 export default Vue.extend({
   data() {
@@ -12,7 +12,7 @@ export default Vue.extend({
   },
   created() {
     this.unsub = (this.$store as any).subscribeAction((action: any) => {
-      let notificationBody = {} as INotification;
+      let notificationBody = {} as NotificationInterface;
       if (['newNotification'].indexOf(action.type) > -1) {
         notificationBody = action.payload.notification;
         emmitNotification.emit(notificationBody);
