@@ -4,8 +4,15 @@ li.comment-list-item
     .avatar
       img.user-photo(:src="avaliation.avatar", alt="User profile")
     .user-info
+      .avaliation
+        b-icon(
+          icon="star-fill",
+          v-for="index in Math.round(avaliation.rate)",
+          :key="index"
+        )
       span: strong {{ avaliation.user }}
       span.time Avaliado em {{ avaliation.time }}
+
   span.comment {{ avaliation.message }}
 </template>
 
@@ -42,6 +49,10 @@ li.comment-list-item
 }
 
 .comment {
+  font-size: 0.9rem;
+}
+
+.avaliation {
   font-size: 0.9rem;
 }
 </style>

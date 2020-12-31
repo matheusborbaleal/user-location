@@ -4,8 +4,9 @@ b-sidebar#location-info-sidebar(shadow)
     .location-info--header
       .name
         span {{ selectedPlace.name }}
-      .is-open
-        span(v-if="selectedPlace.opening_hours") {{ selectedPlace.opening_hours.open_now ? 'Aberto agora' : 'Fechado agora' }}
+      .is-open(v-if="selectedPlace.opening_hours")
+        b-icon.clock-icon(icon="clock")
+        span {{ selectedPlace.opening_hours.open_now ? 'Aberto agora' : 'Fechado agora' }}
     .location-info--body
       .place-rating
         b-form-rating(
@@ -34,7 +35,7 @@ b-sidebar#location-info-sidebar(shadow)
         ul.comments-list
           transition-group(name="flip-list")
             location-info-avaliation(
-              v-for="(avaliation, index) in avaliations",
+              v-for="(avaliation, index) in avaliationsByPlace[selectedPlace.name]",
               :key="`${index}-component`",
               :avaliation="avaliation"
             )
@@ -44,6 +45,16 @@ b-sidebar#location-info-sidebar(shadow)
 </script>
 
 <style lang="stylus" scoped>
+@media screen and (max-width: 1016px) {
+  .b-sidebar {
+    width: 100% !important;
+  }
+}
+
+.b-sidebar {
+  width: 40%;
+}
+
 .name {
   display: flex;
   font-size: 1.6rem;
@@ -62,6 +73,11 @@ b-sidebar#location-info-sidebar(shadow)
 .is-open {
   display: flex;
   justify-content: center;
+  align-items: center;
+}
+
+.clock-icon {
+  margin-right: 0.5rem;
 }
 
 .location-info--body {

@@ -8,7 +8,7 @@
         .form-signin-body
           .form-group.inner-addon
             label E-mail
-            b-input(size="sm", v-model="signInUser.email" type="email")
+            b-input(size="sm", v-model="signInUser.email", type="email")
           .form-group.inner-addon
             label Senha
             b-input(size="sm", type="password", v-model="signInUser.password")
@@ -23,7 +23,7 @@
           ion-icon.return-icon(name="arrow-back", @click="signUpHandler")
           .form-group.inner-addon
             label E-mail
-            b-input(size="sm", v-model="signUpUser.email" type="email")
+            b-input(size="sm", v-model="signUpUser.email", type="email")
           .form-group.inner-addon
             label Senha
             b-input(size="sm", type="password", v-model="signUpUser.password")
@@ -48,7 +48,7 @@
 }
 
 .container-header {
-  height: 40%;
+  height: 50%;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -57,7 +57,7 @@
 }
 
 .container-header img {
-  margin-bottom: 60px;
+  margin-bottom: 120px;
 }
 
 .container-body {
@@ -67,7 +67,7 @@
 
 .form-signin, .form-signup {
   max-width: 450px;
-  margin: -70px auto 10px;
+  margin: -140px auto 10px;
 }
 
 .form-signin-body, .form-signup-body {
@@ -125,6 +125,7 @@
 .return-icon {
   font-size: 1.5rem;
   margin-bottom: 1rem;
+  color: $c-red-default;
 
   &:hover {
     cursor: pointer;

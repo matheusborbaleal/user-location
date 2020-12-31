@@ -12,6 +12,9 @@ import { loggedUser } from '../../../../store/users/types';
             loggedUser
         })
     },
+    components: {
+        UserProfileFavorite: () => import('./_favorites/user-profile-favorite.vue')
+    }
 })
 
 export default class UserProfileSidebar extends Vue {
@@ -21,6 +24,8 @@ export default class UserProfileSidebar extends Vue {
     userName = '';
     userLastName = '';
     userEmail = '';
+
+    favorites = JSON.parse(localStorage.getItem('favorite-places') || '[]');
 
     get currentUser() {
         if (Object.keys(this.loggedUser).length) {

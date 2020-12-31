@@ -7,7 +7,7 @@
       .user
         user-profile
         .logout-button(title="Logout")
-          b-icon(icon="box-arrow-left" @click="logout")
+          b-icon(icon="box-arrow-left", @click="logout")
       .project--logo
         img.logo(src="../../assets/img/white-logo.svg", alt="Logo branca")
     .local--types-list

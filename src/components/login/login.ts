@@ -2,7 +2,7 @@ import { ISimpleUser, IUser } from '@/interfaces/iuser';
 import { createUser, fetchUsers, login } from '../../store/users/actions';
 import { Vue, Component } from 'vue-property-decorator';
 import { mapGetters } from 'vuex';
-import { mountLoggedUser } from '@/store/users/mutations';
+import { authUser, mountLoggedUser } from '@/store/users/mutations';
 import { users } from '../../store/users/types';
 import { emmitNewNotification } from '@/store/notifications/actions';
 import { ITypeNotification } from '@/interfaces/inotification';
@@ -63,6 +63,7 @@ export default class Login extends Vue {
       })
       .catch((err) => {
         const error = this.signUpValidator(err);
+        this.checkPassword();
         this.$store.dispatch(emmitNewNotification({
           title: 'Erro',
           message: error ? error : err,
@@ -74,26 +75,33 @@ export default class Login extends Vue {
 
   signUpValidator(error: string) {
 
-    if (this.passwordToConfirm !== this.signUpUser.password) {
-      return 'As senhas não conferem!';
-    }
-
     switch (error) {
       case 'Missing email or username':
         return 'É necessário preencher o email do usuário!';
       case 'Missing password':
         return 'É necessário preencher o campo de senha!';
       case 'Note: Only defined users succeed registration':
-        return 'Apenas usuários pré-definidos podem ser registrados!';
+        return 'Apenas usuários pré-definidos podem ser registrados! Ex: rachel.howell@reqres.in';
       default:
         return '';
     }
+  }
 
+  checkPassword() {
+
+    if (this.passwordToConfirm !== this.signUpUser.password) {
+      this.$store.dispatch(emmitNewNotification({
+        title: 'Erro',
+        message: 'As senhas não conferem',
+        type: ITypeNotification.DANGER,
+      }));
+    }
   }
 
   signIn() {
     this.$store.dispatch(login(this.signInUser))
-      .then(() => {
+      .then((res) => {
+        this.$store.commit(authUser(res.token))
         this.setLoggedUser();
         this.$router.push({ name: 'LocationDashboard' });
       })

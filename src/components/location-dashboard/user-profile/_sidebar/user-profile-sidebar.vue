@@ -14,15 +14,32 @@ b-sidebar#user-profile-sidebar(shadow)
         label E-mail
         b-form-input(size="sm", v-model="userEmail")
     .profile-actions
-      b-button.save--button(variant="flat semibold btn-sm" size="sm" @click="updateProfile") SALVAR
+      b-button.save--button(
+        variant="flat semibold btn-sm",
+        size="sm",
+        @click="updateProfile"
+      ) SALVAR
     .favorites
       label.favorites--labels Favoritos
+      .favorites-list
+        user-profile-favorite(
+          v-for="(favorite, index) in favorites",
+          :key="index"
+          :index="index",
+          :favorite="favorite"
+        )
 </template>
 
 <script lang="ts" src="./user-profile-sidebar.ts">
 </script>
 
 <style lang="stylus">
+@media screen and (max-width: 1016px) {
+  .b-sidebar {
+    width: 100% !important;
+  }
+}
+
 .b-sidebar {
   width: 40%;
 }
@@ -75,6 +92,11 @@ b-sidebar#user-profile-sidebar(shadow)
 .favorites--labels {
   font-size: 1rem;
   font-weight: $f-semibold;
+}
+
+.favorites-list {
+  overflow: auto;
+  height: 24vh;
 }
 
 .save--button {
