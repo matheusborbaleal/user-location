@@ -1,5 +1,7 @@
 # user-location
 
+Web application capable to show the user the places that are near to him and theirs avaliations from anothers users.
+
 ## Project setup
 ```
 npm install
