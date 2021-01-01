@@ -13,6 +13,7 @@ import { loggedUser } from '../../../store/users/types';
 
 export default class UserProfile extends Vue {
 
+    // eslint-disable-next-line
     public loggedUser: any;
 
     get currentUser() {

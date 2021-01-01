@@ -2,19 +2,20 @@
 .logged-user(v-b-toggle="'user-profile-sidebar'")
   img.user-photo(:src="currentUser.avatar", alt="User profile")
   .user-info
-    span.user-name {{ currentUser.first_name }} {{ currentUser.last_name }}
+    span.user-name(
+      :title="`${currentUser.first_name} ${currentUser.last_name}`"
+    ) {{ currentUser.first_name }} {{ currentUser.last_name }}
     span.user-email {{ currentUser.email }}
 </template>
 
 <script lang="ts" src="./user-profile.ts">
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
 .logged-user {
   display: flex;
   align-items: center;
   color: $c-white;
-  padding: 3rem 0rem 0rem 1.8rem;
   outline: none;
 
   &:hover {
@@ -30,6 +31,10 @@
 
 .user-name {
   font-weight: $f-semibold;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 17rem;
 }
 
 .user-email {

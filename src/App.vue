@@ -13,8 +13,7 @@
 
 <style lang="stylus">
 @import url('./assets/fonts/open-sans/open-sans.styl');
-@import url('./assets/fonts/solomon/stylesheet.styl');
-
+  
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -138,6 +137,20 @@ label, fieldset {
   overflow-y: auto;
   position: fixed;
   transition: all 0.5;
+}
+
+.flip-list-enter-active, .flip-list-leave-active {
+  transition: all 0.3s;
+}
+
+.flip-list-enter {
+  opacity: 0;
+  transform: translateY(80px);
+}
+
+.flip-list-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
 }
 
 // Default button styling

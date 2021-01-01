@@ -1,3 +1,4 @@
+import { logoutUser } from '@/store/users/mutations';
 import { Vue, Component } from 'vue-property-decorator';
 
 @Component({
@@ -8,5 +9,9 @@ import { Vue, Component } from 'vue-property-decorator';
 })
 
 export default class PgLogin extends Vue {
+
+    mounted() {
+        this.$store.commit(logoutUser());
+    }
 
 }

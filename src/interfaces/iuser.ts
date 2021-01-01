@@ -5,7 +5,6 @@ export interface ISimpleUser {
 }
 
 export interface IUser {
-    id: number;
     email: string;
     first_name: string;
     last_name: string;
@@ -15,4 +14,5 @@ export interface IUser {
 export interface IUserState {
     loggedUser: IUser;
     users: IUser[];
+    userToken: string;
 }

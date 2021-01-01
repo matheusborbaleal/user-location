@@ -4,11 +4,18 @@
   location-info-sidebar
   .location-sidebar
     .header
-      user-profile
+      .user
+        user-profile
+        .logout-button(title="Logout")
+          b-icon(icon="box-arrow-left", @click="logout")
       .project--logo
         img.logo(src="../../assets/img/white-logo.svg", alt="Logo branca")
     .local--types-list
-      b-form-select(v-model="selectedLocalType", :options="localTypes" @change="getCurrentLocation")
+      b-form-select(
+        v-model="selectedLocalType",
+        :options="localTypes",
+        @change="getCurrentLocation"
+      )
     .local--list
       location-list
   .location-map
@@ -18,7 +25,7 @@
 <script lang="ts" src="./location-dashboard.ts">
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
 .location-dashboard--wrapper {
   width: 100%;
   height: auto;
@@ -30,7 +37,23 @@
 .header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
+  padding: 3rem 0rem 0rem 1.8rem;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+}
+
+.logout-button {
+  font-size: $f-size-title;;
+  margin-left: 1.5rem;
+  color: $c-white;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .local--types-list {
@@ -40,7 +63,7 @@
 }
 
 .logo {
-  margin-right: 2rem;
+  margin-right: 0.5rem;
   width: 60px;
 }
 

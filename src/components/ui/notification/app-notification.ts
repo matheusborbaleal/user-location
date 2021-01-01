@@ -1,9 +1,9 @@
-import { ITypeNotification, INotification } from '../../../interfaces/inotification';
+import { TypeNotification, NotificationInterface } from '../../../interfaces/inotification';
 import { emmitNotification } from './emmit-notifications/notification';
 import * as Push from 'push.js';
 import { Component, Vue } from 'vue-property-decorator';
 
-interface IConfigNotification {
+interface ConfigNotification {
   duration?: number;
   title?: string;
   message?: string;
@@ -17,40 +17,43 @@ interface IConfigNotification {
 
 export default class AppNotification extends Vue {
   activeWindow = true;
+  // eslint-disable-next-line
   unsubBlur = {} as any;
+  // eslint-disable-next-line
   unsubFocus = {} as any;
 
   get notificationSupport(): boolean {
     return (('Notification' in window));
   }
   get notificationPermission(): boolean {
+    // eslint-disable-next-line
     return (this.notificationSupport && ((Notification as any).permission !== 'denied' || (Notification as any).permission === 'default'));
   }
   get useNotification(): boolean {
     return (this.notificationSupport && this.notificationPermission && !this.activeWindow);
   }
 
-  defaultType(): IConfigNotification {
+  defaultType(): ConfigNotification {
     return {
       icon: 'static/img/notification/detalhes.png'
       , type: 'default',
     };
   }
-  sucessType(): IConfigNotification {
+  sucessType(): ConfigNotification {
     return {
       icon: 'static/img/notification/confirmar.png'
       , type: 'sucess',
     };
   }
 
-  warningType(): IConfigNotification {
+  warningType(): ConfigNotification {
     return {
       icon: 'static/img/notification/alerta.png'
       , type: 'warning',
     };
   }
 
-  dangerType(): IConfigNotification {
+  dangerType(): ConfigNotification {
     return {
       icon: 'static/img/notification/erro.png'
       , type: 'error'
@@ -58,7 +61,7 @@ export default class AppNotification extends Vue {
     };
   }
 
-  infoType(): IConfigNotification {
+  infoType(): ConfigNotification {
     return {
       icon: 'static/img/notification/detalhes.png'
       , type: 'info',
@@ -85,21 +88,21 @@ export default class AppNotification extends Vue {
     window.removeEventListener('focus', this.unsubFocus, false);
   }
   created() {
-    emmitNotification.subscribe((notif: INotification) => {
+    emmitNotification.subscribe((notif: NotificationInterface) => {
 
       let selectedType;
 
       switch (notif.type) {
-        case ITypeNotification.SUCCESS:
+        case TypeNotification.SUCCESS:
           selectedType = this.sucessType();
           break;
-        case ITypeNotification.WARNING:
+        case TypeNotification.WARNING:
           selectedType = this.warningType();
           break;
-        case ITypeNotification.DANGER:
+        case TypeNotification.DANGER:
           selectedType = this.dangerType();
           break;
-        case ITypeNotification.INFO:
+        case TypeNotification.INFO:
           selectedType = this.infoType();
           break;
 
@@ -108,13 +111,14 @@ export default class AppNotification extends Vue {
           break;
       }
 
-      if (notif.type === ITypeNotification.DANGER) {
+      if (notif.type === TypeNotification.DANGER) {
         selectedType = this.dangerType();
       }
       delete notif.type;
-      const config: INotification = Object.assign({}, selectedType, notif);
+      const config: NotificationInterface = Object.assign({}, selectedType, notif);
 
       if (this.useNotification) {
+        // eslint-disable-next-line
         (Push as any).create(config.title, {
           duration: config.duration,
           body: config.message,
@@ -128,6 +132,7 @@ export default class AppNotification extends Vue {
           text: config.message,
           type: config.type,
           duration: config.duration,
+          // eslint-disable-next-line
         } as any);
       }
     });

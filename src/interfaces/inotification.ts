@@ -1,4 +1,4 @@
-export enum ITypeNotification {
+export enum TypeNotification {
   DEFAULT,
   SUCCESS,
   WARNING,
@@ -6,9 +6,9 @@ export enum ITypeNotification {
   INFO,
 }
 
-export interface INotification {
+export interface NotificationInterface {
   id?: string;
-  type?: ITypeNotification;
+  type?: TypeNotification;
   title: string;
   message: string;
   errorCode?: string;

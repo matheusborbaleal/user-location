@@ -4,6 +4,7 @@ import { Component, Vue } from 'vue-property-decorator';
 import { googlemaps } from 'googlemaps';
 import { mapGetters } from 'vuex';
 import { nearbyLocations } from '../../store/location/types';
+import { logoutUser } from '@/store/users/mutations';
 
 @Component({
     name: 'location-dashboard',
@@ -21,6 +22,7 @@ import { nearbyLocations } from '../../store/location/types';
 })
 export default class LocationDashboard extends Vue {
 
+    // eslint-disable-next-line
     public nearbyLocations: any;
 
     selectedLocalType: string | null = 'restaurant';
@@ -28,7 +30,6 @@ export default class LocationDashboard extends Vue {
     localTypes: {}[] = [
         { value: null, text: 'Selecione um tipo de local', disabled: true },
         { value: 'gym', text: 'Academias' },
-        { value: 'airport', text: 'Aeroportos' },
         { value: 'bank', text: 'Bancos' },
         { value: 'bar', text: 'Bares' },
         { value: 'movie_theater', text: 'Cinemas' },
@@ -58,6 +59,7 @@ export default class LocationDashboard extends Vue {
     }
 
     addLocationsToGoogleMaps() {
+        // eslint-disable-next-line
         const mapElement: any = document.getElementById('map');
         const location = new google.maps.Map(mapElement, {
             zoom: 14,
@@ -66,18 +68,34 @@ export default class LocationDashboard extends Vue {
         });
 
         const infowindow = new google.maps.InfoWindow();
-        this.nearbyLocations.forEach((place: any) => {
+        // eslint-disable-next-line
+        this.nearbyLocations.forEach((place: any, index: any) => {
             const lat = place.geometry.location.lat;
             const lng = place.geometry.location.lng;
-            const marker = new google.maps.Marker({
-                position: new google.maps.LatLng(lat, lng),
-                map: location,
-            });
-            google.maps.event.addListener(marker, 'click', () => {
-                infowindow.setContent(`<div class="ui header">${place.name}</div><p>${place.vicinity}</p>`);
-                infowindow.open(location, marker);
-            });
+
+            setTimeout(() => {
+                const marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(lat, lng),
+                    map: location,
+                    animation: google.maps.Animation.DROP
+                });
+                google.maps.event.addListener(marker, 'click', () => {
+                    infowindow.setContent(`
+                    <div class="header">
+                        <h5>${place.name}</h5>
+                    </div>
+                    <div style="display:flex;flex-direction:column;margin-bottom:0.5rem" >
+                        <span>${place.vicinity}</span>
+                    </div>`);
+                    infowindow.open(location, marker);
+                });
+            }, index * 100);
         });
+    }
+
+    logout() {
+        this.$store.commit(logoutUser());
+        this.$router.push({ name: 'Login' });
     }
 
     mounted() {

@@ -1,10 +1,10 @@
-import { INotification } from '../../interfaces/inotification';
+import { NotificationInterface } from '../../interfaces/inotification';
 import { addNotification } from './types';
 
-export const emmitNewNotification = (notification: INotification) => ({ type: 'newNotification', notification });
+export const emmitNewNotification = (notification: NotificationInterface) => ({ type: 'newNotification', notification });
 
 export const actions = {
-  newNotification({ commit }: { commit: Function }, { notification }: { notification: INotification }) {
+  newNotification({ commit }: { commit: Function }, { notification }: { notification: NotificationInterface }) {
     commit(addNotification, notification);
   },
 };
