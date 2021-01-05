@@ -1,5 +1,4 @@
-import { loadNearbyPlaces } from '@/store/location/actions';
-import { Vue, Component } from 'vue-property-decorator';
+import { Component, Vue } from 'vue-property-decorator';
 import { mapGetters } from 'vuex';
 import { nearbyLocations } from '../../../store/location/types';
 
