@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { ISimpleUser } from '../../interfaces/iuser';
 import { handleErrors } from '@/utils/handle-errors';
 import fetch from '../../utils/fetch';
