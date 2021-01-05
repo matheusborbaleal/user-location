@@ -6,7 +6,9 @@ module.exports = {
     types.forEach(type => addStyleResource(config.module.rule('stylus').oneOf(type)))
   },
 
-  publicPath: '/',
+  publicPath: process.env.NODE_ENV === 'production'
+    ? ''
+    : '',
   outputDir: undefined,
   assetsDir: undefined,
   runtimeCompiler: undefined,
