@@ -8,10 +8,15 @@ export const fetchUsers = () => ({ type: 'loadUsers' });
 export const createUser = (user: ISimpleUser) => ({ type: 'registerUser', user });
 export const login = (user: ISimpleUser) => ({ type: 'signIn', user });
 
+const USERS_AUTOCOMPLETE_URL =
+        process.env.NODE_ENV === 'production'
+            ? 'https://reqres.in/api'
+            : 'api';
+
 export const actions = {
 
     loadUsers({ commit }: { commit: Function }) {
-        return fetch('api/users?per_page=20')
+        return fetch(`${USERS_AUTOCOMPLETE_URL}/users?per_page=20`)
             .then(handleErrors)
             .then(res => {
                 commit(setUsers, res.data);
@@ -22,7 +27,7 @@ export const actions = {
     },
 
     registerUser({ commit }: { commit: Function }, { user }: { user: ISimpleUser }) {
-        return fetch('api/register', {
+        return fetch(`${USERS_AUTOCOMPLETE_URL}/register`, {
             method: 'POST',
             body: JSON.stringify(user)
         })
@@ -36,7 +41,7 @@ export const actions = {
     },
 
     signIn({ commit }: { commit: Function }, { user }: { user: ISimpleUser }) {
-        return fetch('api/login', {
+        return fetch(`${USERS_AUTOCOMPLETE_URL}/login`, {
             method: 'POST',
             body: JSON.stringify(user)
         })
