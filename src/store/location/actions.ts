@@ -9,7 +9,7 @@ export const loadNearbyPlaces = (location: ILocation) => ({ type: 'getNearbyLoca
 
 const GMAPS_PLACES_AUTOCOMPLETE_URL =
     process.env.NODE_ENV === 'production'
-        ? 'https://maps.googleapis.com/maps/api/'
+        ? 'https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/'
         : 'place';
 
 export const actions = {

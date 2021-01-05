@@ -10,7 +10,7 @@ export const login = (user: ISimpleUser) => ({ type: 'signIn', user });
 
 const USERS_AUTOCOMPLETE_URL =
         process.env.NODE_ENV === 'production'
-            ? 'https://reqres.in/api'
+            ? 'https://cors-anywhere.herokuapp.com/https://reqres.in/api'
             : 'api';
 
 export const actions = {
