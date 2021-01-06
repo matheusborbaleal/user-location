@@ -51,6 +51,7 @@ export default class UserSignUp extends Vue {
                     this.$router.push({ name: 'LocationDashboard' });
                 })
                 .catch((err) => {
+                    console.log('err', err);
                     const error = this.signUpValidator(err);
                     this.$store.dispatch(emmitNewNotification({
                         title: 'Erro',
@@ -63,7 +64,7 @@ export default class UserSignUp extends Vue {
             this.clearInput();
             this.$store.dispatch(emmitNewNotification({
                 title: 'Erro',
-                message: 'As senhas não conferem',
+                message: 'As senhas não conferem!',
                 type: TypeNotification.DANGER,
             }));
         }
