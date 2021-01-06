@@ -1,6 +1,6 @@
 <template lang="pug">
 .form-signup-body(@keyup.enter="registerUser")
-  ion-icon.return-icon(name="arrow-back", @click="signUpHandler")
+  b-icon.return-icon(icon="arrow-left", @click="signUpHandler")
   .form-group.inner-addon
     label E-mail
     b-input(size="sm", v-model="signUpUser.email", type="email")

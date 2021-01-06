@@ -13,11 +13,9 @@ export const mutations = {
         state.loggedUser = loggedUser;
         return loggedUser;
     },
-    //eslint-disable-next-line
     [setUserToken](state: IUserState, { userToken }: { userToken: string }) {
         localStorage.setItem('user-token', userToken);
     },
-    //eslint-disable-next-line
     [deleteUserToken](state: IUserState) {
         localStorage.removeItem('user-token');
     }
